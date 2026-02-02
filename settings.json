@@ -1,0 +1,43 @@
+{
+    "$schema": "https://json.schemastore.org/claude-code-settings.json",
+    "defaultMode": "dontAsk",
+    "permissions": {
+        "allow": [
+            "Bash",
+            "Read",
+            "Edit",
+            "Write",
+            "Grep",
+            "Glob"
+        ],
+        "ask": [
+            "Bash(rm -rf *)",
+            "Bash(sudo *)",
+            "Bash(chmod -R 777 *)",
+            "Bash(curl * | sh)",
+            "Bash(curl * | bash)",
+            "Bash(wget * | sh)",
+            "Bash(wget * | bash)"
+        ],
+        "deny": [
+            "Bash(git push * main)",
+            "Bash(git push * master)",
+            "Bash(git push -f *)",
+            "Bash(git push --force *)",
+            "Bash(dd *)",
+            "Bash(mkfs*)",
+            "Bash(fdisk *)",
+            "Bash(parted *)"
+        ]
+    },
+    "model": "sonnet",
+    "env": {
+        "CLAUDE_CODE_ENABLE_TELEMETRY": "1"
+    },
+    "attribution": {
+        "commit": "Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>",
+        "pr": "🤖 Generated with [Claude Code](https://claude.com/claude-code)"
+    },
+    "outputStyle": "concise",
+    "language": "ja"
+}
