@@ -15,6 +15,7 @@ cd claude-code-settings
 ## 構成
 
 ```
+├── CLAUDE.md           # グローバルプロジェクトメモリ（ワークフロー指示）
 ├── settings.json       # グローバル設定
 ├── agents/             # カスタムエージェント
 │   ├── git-init/           # ブランチセットアップ
