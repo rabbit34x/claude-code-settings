@@ -23,15 +23,15 @@ cd claude-code-settings
 │   ├── project-manager/
 │   ├── technical-designer/
 │   ├── document-reviewer/
-│   ├── test-designer/      # テスト設計（v2.0で追加）
+│   ├── test-designer/
 │   ├── implement/
 │   ├── code-reviewer/
-│   ├── security-auditor/   # セキュリティ監査（v2.0で追加）
+│   ├── security-auditor/
 │   ├── code-verifier/
 │   ├── quality-fixer/
-│   ├── dependency-auditor/ # 依存関係監査（v2.0で追加）
-│   ├── integration-tester/ # 統合テスト実行（v2.0で追加）
-│   └── git-finish/         # PR作成 & クリーンアップ
+│   ├── dependency-auditor/
+│   ├── integration-tester/
+│   └── git-finish/
 ├── commands/           # カスタムコマンド
 ├── hooks/              # ライフサイクルフック
 └── skills/             # カスタムスキル
@@ -64,18 +64,16 @@ git-init → PM → TD → DR → TestD → Impl → CR → SA → CV → QF →
 | 1 | Project Manager | 要件整理・タスク分解 | 要件定義書 |
 | 2 | Technical Designer | 設計・アーキテクチャ決定 | 設計ドキュメント |
 | 3 | Document Reviewer | 設計ドキュメントレビュー | レビュー結果 |
-| 4 | **Test Designer** ⭐ | テスト設計 | テスト設計書 |
+| 4 | Test Designer | テスト設計 | テスト設計書 |
 | 5 | Implement | コード実装・テスト実装 | ソースコード・テストコード |
 | 6 | Code Reviewer | コードの正しさ検証 | レビュー指摘事項 |
-| 7 | **Security Auditor** ⭐ | セキュリティ脆弱性チェック | セキュリティ監査レポート |
+| 7 | Security Auditor | セキュリティ脆弱性チェック | セキュリティ監査レポート |
 | 8 | Code Verifier | ドキュメントとコードの整合性確認 | 整合性チェック結果 |
 | 9 | Quality Fixer | 静的解析・フォーマット | 整形済みコード |
-| 10 | **Dependency Auditor** ⭐ | 依存関係監査・ライセンスチェック | 依存関係監査レポート |
-| 11 | **Integration Tester** ⭐ | E2E・API統合テスト実行 | 統合テスト結果レポート |
+| 10 | Dependency Auditor | 依存関係監査・ライセンスチェック | 依存関係監査レポート |
+| 11 | Integration Tester | E2E・API統合テスト実行 | 統合テスト結果レポート |
 | 12 | ユーザー | ビルド・ユニットテスト | - |
 | 13 | Git Finish | PR作成・クリーンアップ | PR |
-
-⭐ = v2.0で追加された新規エージェント
 
 ## 使用例
 
