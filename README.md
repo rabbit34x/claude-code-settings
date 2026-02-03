@@ -77,44 +77,6 @@ git-init → PM → TD → DR → TestD → Impl → CR → SA → CV → QF →
 
 ⭐ = v2.0で追加された新規エージェント
 
-### 新規エージェントの特徴
-
-#### Test Designer（テスト設計者）
-- **配置**: Document Reviewer → Test Designer → Implement
-- テストケース（ユニット・統合・E2E）を事前に設計
-- 境界値・エッジケースを洗い出し
-- 受け入れテスト基準の明確化
-
-#### Security Auditor（セキュリティ監査者）
-- **配置**: Code Reviewer → Security Auditor → Code Verifier
-- OWASP Top 10に基づく専門的なセキュリティチェック
-- 機密情報のハードコード検出
-- 認証・認可ロジックの検証
-
-#### Dependency Auditor（依存関係監査者）
-- **配置**: Quality Fixer → Dependency Auditor → Integration Tester
-- 依存パッケージの脆弱性チェック（npm audit, pip-audit等）
-- ライセンス互換性の確認
-- 非推奨パッケージの検出
-
-#### Integration Tester（統合テスター）
-- **配置**: Dependency Auditor → Integration Tester → ユーザー検証
-- E2Eテスト、API統合テスト、システム統合テストの自動実行
-- テスト失敗時の詳細なログとスクリーンショット提供
-- ユニットテストはユーザー検証フェーズで実行（分離）
-
-### 多層防御アーキテクチャ
-
-```
-Code Reviewer（基本的なセキュリティ）
-    ↓
-Security Auditor（専門的なセキュリティ）
-    ↓
-Dependency Auditor（依存関係のセキュリティ）
-    ↓
-Integration Tester（実際の動作で検証）
-```
-
 ## 使用例
 
 ```bash
