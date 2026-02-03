@@ -27,7 +27,8 @@
 
 ```mermaid
 graph TB
-    Start[User Request] --> PM[Project Manager<br/>要件整理・タスク分解]
+    Start[User Request] --> GitStart["/git-start<br/>ブランチ作成"]
+    GitStart --> PM[Project Manager<br/>要件整理・タスク分解]
     PM --> TD[Technical Designer<br/>設計・アーキテクチャ決定]
 
     TD --> DR{Document Reviewer<br/>設計ドキュメントレビュー}
@@ -45,16 +46,105 @@ graph TB
 
     QF --> User{ユーザー<br/>ビルド・テスト実行}
     User -->|失敗| Impl
-    User -->|成功・承認| Commit[Ready to Commit]
+    User -->|成功・承認| GitFinishPR["/git-finish<br/>PR作成"]
+
+    GitFinishPR --> Review{ユーザー<br/>PRレビュー・マージ}
+    Review --> GitFinishClean["/git-finish<br/>クリーンアップ"]
+    GitFinishClean --> Done[完了]
 
     style Start fill:#e1f5ff
-    style Commit fill:#c8e6c9
+    style Done fill:#c8e6c9
     style DR fill:#fff9c4
     style User fill:#ffe0b2
+    style Review fill:#ffe0b2
     style Verifier fill:#f3e5f5
+    style GitStart fill:#b3e5fc
+    style GitFinishPR fill:#b3e5fc
+    style GitFinishClean fill:#b3e5fc
 ```
 
+## Gitワークフローエージェント
+
+開発フローの開始と終了を自動化するエージェントです。ワークフローに組み込まれ、自動的に実行されます。
+
+### Git Init（ブランチセットアップ）
+
+**配置:** フローの最初（User Request → **Git Init** → Project Manager）
+
+**責務:**
+- mainブランチの最新化
+- 新しい開発ブランチの作成
+
+**実行内容:**
+1. 現在の状態を確認（未コミット変更の警告）
+2. mainブランチに切り替え
+3. 最新の変更をプル
+4. 新しい開発ブランチを作成
+
+**成果物:**
+- 最新のmainから分岐した開発ブランチ
+
+---
+
+### Git Finish（PR作成・クリーンアップ）
+
+**配置:** フローの最後（Quality Fixer → ユーザー検証 → **Git Finish**）
+
+**責務:**
+- PR作成（PRが存在しない場合）
+- クリーンアップ（PRがマージ済みの場合）
+
+**動作モード:**
+| 状態 | アクション |
+|------|----------|
+| PRが存在しない | リモートにプッシュ → PR作成 |
+| PRが未マージ | 待機状態を報告 |
+| PRがマージ済み | main切替 → pull → ブランチ削除 |
+
+**成果物:**
+- 作成されたPR（PR作成時）
+- クリーンアップ完了の報告（マージ後）
+
+**典型的なフロー:**
+```
+1. Quality Fixer完了後: Git Finish → PR作成
+2. PRをレビュー・マージ（ユーザー手動）
+3. マージ後: Git Finish → クリーンアップ
+```
+
+---
+
+## スキルコマンド（手動実行用）
+
+エージェントの処理を手動で実行したい場合は、以下のスキルコマンドを使用できます：
+
+| コマンド | 説明 |
+|---------|------|
+| `/git-start <branch>` | mainから最新を取得し、新しいブランチを作成 |
+| `/git-finish` | PR作成またはクリーンアップを自動判定 |
+
+---
+
 ## 各ロールの詳細
+
+### 0. Git Init（Gitブランチセットアップ）
+
+**責務:**
+- 開発ブランチの作成
+- mainブランチの最新化
+
+**実行コマンド:**
+```bash
+git checkout main
+git pull origin main
+git checkout -b <branch-name>
+```
+
+**次のステップへの条件:**
+- 新しい開発ブランチが作成されている
+- mainの最新コミットから分岐している
+
+---
 
 ### 1. Project Manager（プロジェクトマネージャー）
 
