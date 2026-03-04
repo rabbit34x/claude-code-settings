@@ -31,4 +31,3 @@ Rules:
 - No code changes.
 - Plan must be specific enough to implement without guessing.
 
-

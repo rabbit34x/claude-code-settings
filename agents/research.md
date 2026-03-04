@@ -18,4 +18,3 @@ Rules:
 - Be concrete (file paths, functions, flows).
 - If uncertain, state assumptions clearly.
 
-
