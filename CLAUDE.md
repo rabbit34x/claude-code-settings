@@ -16,4 +16,5 @@ Post-implement:
 - Commit changes in appropriate granularity (logical units per commit).
 - Create a Pull Request referencing the related Issue (e.g., `Closes #N`).
 - If CI is configured, watch CI status until all checks pass. If CI fails, fix and push until green.
+- After CI passes, watch for PR review using `gh pr view --json reviewDecision,reviews`. If changes are requested, address review comments, push fixes, and repeat until approved.
 
