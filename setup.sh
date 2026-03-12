@@ -91,6 +91,12 @@ create_symlink "${SCRIPT_DIR}/commands" "${TARGET_DIR}/commands" "commands/"
 # hooks/
 create_symlink "${SCRIPT_DIR}/hooks" "${TARGET_DIR}/hooks" "hooks/"
 
+# rules/
+create_symlink "${SCRIPT_DIR}/rules" "${TARGET_DIR}/rules" "rules/"
+
+# output-styles/
+create_symlink "${SCRIPT_DIR}/output-styles" "${TARGET_DIR}/output-styles" "output-styles/"
+
 # 完了メッセージ
 echo ""
 echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
@@ -108,5 +114,7 @@ echo "  - agents/"
 echo "  - skills/"
 echo "  - commands/"
 echo "  - hooks/"
+echo "  - rules/"
+echo "  - output-styles/"
 echo ""
 echo "設定を変更する場合は、このリポジトリ内のファイルを編集してください。"

@@ -12,9 +12,63 @@ cd claude-code-settings
 
 `~/.claude/` 配下にシンボリックリンクが作成されます。
 
-## 原則
+## ディレクトリ構成
 
-Keep It Simple, Stupid.
+### settings.json
+
+Claude Code本体の設定ファイル。パーミッション、サンドボックス、フック、デフォルトモードなどを定義する。
+
+変更するとき: 権限モデル、サンドボックス設定、環境変数など、Claude Codeの動作そのものを変えたいとき。
+
+https://docs.anthropic.com/en/docs/claude-code/settings
+
+### output-styles/
+
+カスタムOutput Styleの定義。**システムプロンプトとして注入**されるため、全セッションに一貫して適用される。
+
+追加するとき: 新しいワークフローや応答スタイルを定義したいとき。
+
+https://docs.anthropic.com/en/docs/claude-code/output-styles
+
+### rules/
+
+グローバルに適用されるルール。**ユーザーコンテキストとして注入**される。`paths` フロントマターで対象ファイルを限定できる。
+
+追加するとき: タスクの手順、禁止行動、Lint・テストの実行手順など、Claudeに従わせたいルールがあるとき。
+
+プロジェクト固有のルールはこのリポジトリではなく、各プロジェクトの `.claude/rules/` に置く。
+
+https://docs.anthropic.com/en/docs/claude-code/memory#organize-rules-with-clauderules
+
+### agents/
+
+サブエージェントの定義。research、plan、implementなどの専門エージェントを定義する。
+
+追加するとき: 新しい役割のサブエージェントが必要なとき。
+
+https://docs.anthropic.com/en/docs/claude-code/sub-agents
+
+### skills/
+
+スラッシュコマンドとして呼び出せるスキルの定義。
+
+追加するとき: `/command` 形式で呼び出したい再利用可能な操作があるとき。
+
+https://docs.anthropic.com/en/docs/claude-code/sub-agents#skills
+
+### CLAUDE.md
+
+グローバルなプロジェクトメモリ。ユーザーコンテキストとして注入される。
+
+現在の構成ではワークフローは `output-styles/`、手順は `rules/` に定義しているため、基本的に空。
+
+https://docs.anthropic.com/en/docs/claude-code/memory
+
+## 設計方針
+
+- **Output Style** はシステムプロンプトとして注入されるため、全セッションに一貫して適用される
+- **Hooks** はOSレベルで強制されるため、Claudeの判断に依存しない
+- **Rules** はユーザーコンテキストとして注入される。`paths` フロントマターで対象ファイルを限定できる
 
 ## ライセンス
 
