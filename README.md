@@ -22,14 +22,6 @@ Claude Code本体の設定ファイル。パーミッション、サンドボッ
 
 https://docs.anthropic.com/en/docs/claude-code/settings
 
-### output-styles/
-
-カスタムOutput Styleの定義。**システムプロンプトとして注入**されるため、全セッションに一貫して適用される。
-
-追加するとき: 新しいワークフローや応答スタイルを定義したいとき。
-
-https://docs.anthropic.com/en/docs/claude-code/output-styles
-
 ### rules/
 
 グローバルに適用されるルール。**ユーザーコンテキストとして注入**される。`paths` フロントマターで対象ファイルを限定できる。
@@ -60,13 +52,13 @@ https://docs.anthropic.com/en/docs/claude-code/sub-agents#skills
 
 グローバルなプロジェクトメモリ。ユーザーコンテキストとして注入される。
 
-現在の構成ではワークフローは `output-styles/`、手順は `rules/` に定義しているため、基本的に空。
+現在の構成ではワークフローは `skills/`、手順は `rules/` に定義しているため、基本的に空。
 
 https://docs.anthropic.com/en/docs/claude-code/memory
 
 ## 設計方針
 
-- **Output Style** はシステムプロンプトとして注入されるため、全セッションに一貫して適用される
+- **Skills** はスラッシュコマンドとして明示的に呼び出すワークフロー
 - **Hooks** はOSレベルで強制されるため、Claudeの判断に依存しない
 - **Rules** はユーザーコンテキストとして注入される。`paths` フロントマターで対象ファイルを限定できる
 

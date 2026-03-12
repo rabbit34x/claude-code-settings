@@ -32,7 +32,6 @@
     "Stop": []
   },
   "includeGitInstructions": false,
-  "outputStyle": "development",
   "language": "ja",
   "defaultMode": "dontAsk"
 }
