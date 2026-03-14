@@ -6,6 +6,7 @@
   },
   "includeGitInstructions": false,
   "permissions": {
+    "default_mode": "auto",
     "allow": [
       "Bash",
       "Read",
@@ -28,24 +29,6 @@
     "command": "npx -y @owloops/claude-powerline@latest --style=powerline"
   },
   "language": "ja",
-  "sandbox": {
-    "enabled": true,
-    "autoAllowBashIfSandboxed": true,
-    "allowUnsandboxedCommands": false,
-    "excludeCommands": [
-      "git",
-      "gh",
-      "ssh",
-      "codex",
-      "docker",
-      "pnpm",
-      "terraform"
-    ],
-    "allowedHosts": [
-      "github.com",
-      "api.github.com"
-    ]
-  },
   "defaultMode": "dontAsk",
   "skipAutoPermissionPrompt": true
 }
