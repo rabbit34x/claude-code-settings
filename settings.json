@@ -4,6 +4,7 @@
     "CLAUDE_CODE_ENABLE_TELEMETRY": "0",
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
+  "includeGitInstructions": false,
   "permissions": {
     "allow": [
       "Bash",
@@ -15,16 +16,6 @@
     ],
     "deny": []
   },
-  "statusLine": {
-    "type": "command",
-    "command": "npx -y @owloops/claude-powerline@latest --style=powerline"
-  },
-  "sandbox": {
-    "enabled": true,
-    "autoAllowBashIfSandboxed": true,
-    "allowUnsandboxedCommands": false,
-    "excludeCommands": ["git", "gh"]
-  },
   "hooks": {
     "SessionStart": [],
     "PreToolUse": [],
@@ -32,7 +23,24 @@
     "Notification": [],
     "Stop": []
   },
-  "includeGitInstructions": false,
+  "statusLine": {
+    "type": "command",
+    "command": "npx -y @owloops/claude-powerline@latest --style=powerline"
+  },
   "language": "ja",
-  "defaultMode": "dontAsk"
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "allowUnsandboxedCommands": false,
+    "excludeCommands": [
+      "git",
+      "gh",
+      "codex",
+      "docker",
+      "pnpm",
+      "terraform"
+    ]
+  },
+  "defaultMode": "dontAsk",
+  "skipAutoPermissionPrompt": true
 }
